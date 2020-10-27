@@ -6,11 +6,8 @@ export default function Navbar({ users, posts, authorId, activeUser, setValueSea
 	return (
 		<View style={styles.block}>
 			<Text style={styles.title}>{authorId ? `${activeUser}'s Posts` : 'Authors'}</Text>
-			<TextInput
-				onChangeText={setValueSearch}
-				style={styles.input}
-				placeholder="Search"></TextInput>
-			<Icon name="rocket" size={20} color="#900" />
+			<Icon style={styles.icon} name="rocket" size={20} color="#900" />
+			<TextInput onChangeText={setValueSearch} style={styles.input} placeholder="Search" />
 		</View>
 	);
 }
@@ -21,6 +18,10 @@ const styles = StyleSheet.create({
 		width: '100%',
 		// justifyContent: 'space-between',
 		alignItems: 'flex-start',
+		marginBottom: 20,
+	},
+	icon: {
+		// bottom: '-50',
 	},
 	title: {
 		fontSize: 20,
@@ -29,7 +30,10 @@ const styles = StyleSheet.create({
 	input: {
 		width: '100%',
 		backgroundColor: '#eeeeee',
-		padding: 5,
+		paddingLeft: 40,
+		paddingTop: 5,
+		paddingRight: 5,
+		paddingBottom: 5,
 		fontSize: 16,
 	},
 });

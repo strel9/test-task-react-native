@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 	},
 	email: {
-		color: '#948C8D',
+		color: '#382A2C',
 		fontSize: 12,
 	},
 	posts: {
