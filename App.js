@@ -16,6 +16,7 @@ export default function App() {
 	const [posts, setPosts] = React.useState([]);
 	const [authorId, setAuthorId] = React.useState();
 	const [activeUser, setActiveUser] = React.useState();
+	const [valueSearch, setValueSearch] = React.useState('Ervin');
 
 	useEffect(() => {
 		fetch(`${API_URL}${API_USERS}`)
@@ -33,8 +34,11 @@ export default function App() {
 			});
 	}, []);
 
-	const search = (params) => {
-		console.log(params);
+	const search = (valueSearch) => {
+		// console.log(valueSearch);
+		users.filter((item) => {
+			item.name || item.email === valueSearch;
+		});
 	};
 
 	const onOpenPosts = (id, name) => {
@@ -46,7 +50,13 @@ export default function App() {
 		<PaperProvider>
 			<StatusBar style="auto" />
 			<View style={styles.container}>
-				<Navbar users={users} posts={posts} authorId={authorId} activeUser={activeUser} />
+				<Navbar
+					users={users}
+					posts={posts}
+					authorId={authorId}
+					activeUser={activeUser}
+					setValueSearch={setValueSearch}
+				/>
 				{authorId ? (
 					<PostsScreen posts={posts} authorId={authorId} />
 				) : (

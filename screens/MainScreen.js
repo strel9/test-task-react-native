@@ -18,8 +18,28 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 
 	return (
 		<>
-			{users.map((item) => (
-				// <FlatList/>
+			<FlatList
+				style={styles.blockMain}
+				data={users}
+				renderItem={({ item }) => (
+					<TouchableOpacity
+						style={styles.blockItem}
+						onPress={() => onOpenPosts(item.id, item.name)}
+						key={`${item.id}${item.username}`}>
+						<View style={styles.initials}>{initialsOfName(item.name)}</View>
+						<View style={styles.blockNameEmail}>
+							<View>{item.name}</View>
+							<View style={styles.email}>{item.email}</View>
+						</View>
+						<View style={styles.posts}>
+							{`${countPostsOfUser(item.id)} posts`}
+							<Icon name="rocket" size={30} color="#900" />
+						</View>
+					</TouchableOpacity>
+				)}
+			/>
+
+			{/* {users.map((item) => (
 				<TouchableOpacity
 					style={styles.blockItem}
 					onPress={() => onOpenPosts(item.id, item.name)}
@@ -34,18 +54,24 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 						<Icon name="rocket" size={30} color="#900" />
 					</View>
 				</TouchableOpacity>
-			))}
+			))} */}
 		</>
 	);
 }
 
 const styles = StyleSheet.create({
+	blockMain: {
+		width: '100%',
+		// flex: 1,
+		// flexDirection: 'column',
+		// justifyContent: 'space-between',
+	},
 	blockItem: {
 		flex: 1,
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		// justifyContent: 'space-between',
+		justifyContent: 'center',
 	},
 	initials: {
 		backgroundColor: '#6FCF97',

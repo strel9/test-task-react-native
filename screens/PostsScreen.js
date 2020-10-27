@@ -6,13 +6,21 @@ export default function PostsScreen({ posts, authorId }) {
 
 	return (
 		<View style={styles.block}>
-			{newPosts.map((item) => (
-				// <FlatList></FlatList>
+			<FlatList
+				data={newPosts}
+				renderItem={({ item }) => (
+					<View style={styles.item}>
+						<View style={styles.title}>{item.title}</View>
+						<View style={styles.post}>{item.body}</View>
+					</View>
+				)}
+			/>
+			{/* {newPosts.map((item) => (
 				<View style={styles.item}>
 					<View style={styles.title}>{item.title}</View>
 					<View style={styles.post}>{item.body}</View>
 				</View>
-			))}
+			))} */}
 		</View>
 	);
 }
