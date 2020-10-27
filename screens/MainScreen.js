@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function UserItems({ users, posts, onOpenPosts }) {
 	const initialsOfName = (name) =>
@@ -17,9 +18,8 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 	};
 
 	return (
-		<>
+		<View style={styles.blockMain}>
 			<FlatList
-				style={styles.blockMain}
 				data={users}
 				renderItem={({ item }) => (
 					<TouchableOpacity
@@ -33,7 +33,8 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 						</View>
 						<View style={styles.posts}>
 							{`${countPostsOfUser(item.id)} posts`}
-							<Icon name="rocket" size={30} color="#900" />
+							{/* <Icon style={styles.icon} name="rocket" size={30} color="#900" /> */}
+							<AntDesign style={styles.icon} name="right" size={12} color="black" />
 						</View>
 					</TouchableOpacity>
 				)}
@@ -55,7 +56,7 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 					</View>
 				</TouchableOpacity>
 			))} */}
-		</>
+		</View>
 	);
 }
 
@@ -65,15 +66,17 @@ const styles = StyleSheet.create({
 		// flex: 1,
 		// flexDirection: 'column',
 		// justifyContent: 'space-between',
+		// alignItems: 'center',
 	},
 	blockItem: {
 		flex: 1,
 		width: '100%',
 		flexDirection: 'row',
-		alignItems: 'center',
 		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	initials: {
+		width: '10%',
 		backgroundColor: '#6FCF97',
 		borderRadius: '50%',
 		borderColor: 'green',
@@ -83,6 +86,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 	},
 	blockNameEmail: {
+		// width: '60%',
 		flex: 1,
 		flexDirection: 'column',
 		marginLeft: 10,
@@ -95,10 +99,14 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
 	posts: {
+		width: '30%',
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		fontSize: 16,
+	},
+	icon: {
+		marginLeft: 15,
 	},
 });

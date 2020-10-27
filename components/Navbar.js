@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, setValueSearch } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+// import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function Navbar({ users, posts, authorId, activeUser, setValueSearch }) {
 	return (
 		<View style={styles.block}>
 			<Text style={styles.title}>{authorId ? `${activeUser}'s Posts` : 'Authors'}</Text>
-			<Icon style={styles.icon} name="rocket" size={20} color="#900" />
+			{/* <Icon style={styles.icon} name="rocket" size={20} color="#900" /> */}
+			<AntDesign style={styles.icon} name="search1" size={17} color="black" />
 			<TextInput onChangeText={setValueSearch} style={styles.input} placeholder="Search" />
 		</View>
 	);
