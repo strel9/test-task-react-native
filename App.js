@@ -1,11 +1,11 @@
 // import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+
 import Navbar from './components/Navbar';
 import AuthorsScreen from './screens/AuthorsScreen';
 import PostsScreen from './screens/PostsScreen';
-
-import { Provider as PaperProvider } from 'react-native-paper';
 
 const API_URL = 'https://jsonplaceholder.typicode.com/';
 const API_USERS = 'users';
@@ -18,9 +18,7 @@ export default function App() {
 			.then((data) => {
 				setUsers(data);
 			});
-	}, []);
 
-	useEffect(() => {
 		fetch(`${API_URL}${API_POSTS}`)
 			.then((response) => response.json())
 			.then((data) => {
@@ -38,9 +36,6 @@ export default function App() {
 
 	const onChangeSearch = (query) => setSearchQuery(query);
 	const search = (searchArr, KEY1, KEY2) => {
-		// if (searchQuery === '') {
-		// 	return searchArr;
-		// }
 		return searchArr.filter(
 			(item) =>
 				item[KEY1].toLowerCase().includes(searchQuery.toLowerCase()) ||

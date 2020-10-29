@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import { Avatar } from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -19,27 +18,27 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 	};
 
 	return (
-		<View style={styles.block}>
+		<View style={styles.userBlock}>
 			<FlatList
 				data={users}
 				keyExtractor={(item) => `${item.id}${item.name}`}
 				renderItem={({ item }) => (
 					<TouchableOpacity
-						style={styles.listItem}
+						style={styles.userItem}
 						onPress={() => onOpenPosts(item.id, item.name)}
 						key={`${item.id}${item.username}`}>
 						<Avatar.Text
-							style={styles.listItemInitials}
+							style={styles.userItemInitials}
 							size={40}
 							label={initialsOfName(item.name)}
 						/>
-						<View style={styles.listItemNameEmail}>
+						<View style={styles.userItemNameEmail}>
 							<Text>{item.name}</Text>
 							<Text style={styles.email}>{item.email}</Text>
 						</View>
-						<View style={styles.posts}>
+						<View style={styles.postNumber}>
 							<Text>{`${countPostsOfUser(item.id)} posts`}</Text>
-							<AntDesign style={styles.icon} name="right" size={12} color="black" />
+							<AntDesign style={styles.postNumberIcon} name="right" size={12} color="black" />
 						</View>
 					</TouchableOpacity>
 				)}
@@ -49,50 +48,52 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 }
 
 const styles = StyleSheet.create({
-	block: {
+	userBlock: {
 		flex: 5,
 		width: '100%',
-		// flexDirection: 'column',
-		// justifyContent: 'center',
-		// alignItems: 'stretch',
+		justifyContent: 'space-between',
 	},
-	listItem: {
+	userItem: {
 		flex: 1,
-		// width: '100%',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		// alignItems: 'center',
+		paddingTop: 12,
+		paddingBottom: 12,
+		marginBottom: 10,
 	},
-	listItemInitials: {
-		// flex: 1,
+	userItemInitials: {
 		backgroundColor: '#6FCF97',
-		color: '#000',
+		color: '#382A2C',
+		// flex: 1,
 		// borderRadius: '50%',
 		// padding: 8,
 		// fontWeight: 500,
-		// fontSize: 14,
+		fontSize: 10,
 	},
-	listItemNameEmail: {
-		// width: '60%',
+	userItemNameEmail: {
 		flex: 4,
-		alignItems: 'flex-start',
+		flexDirection: 'column',
+		justifyContent: 'space-around',
+		// alignItems: 'flex-start',
 		marginLeft: 15,
 	},
 	name: {
 		fontSize: 16,
 	},
 	email: {
-		color: '#382A2C',
+		color: '#948C8D',
 		fontSize: 12,
 	},
-	posts: {
+	postNumber: {
 		flex: 2,
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
+		color: '#382A2C',
 		fontSize: 16,
 	},
-	icon: {
+	postNumberIcon: {
+		color: '#382A2C',
 		marginLeft: 15,
 	},
 });

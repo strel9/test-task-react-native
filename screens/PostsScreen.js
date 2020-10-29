@@ -5,14 +5,16 @@ export default function PostsScreen({ posts, authorId }) {
 	const newPosts = posts.filter((item) => item.userId === authorId);
 	const strFirstCapital = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 	return (
-		<View style={styles.block}>
+		<View style={styles.postBlock}>
 			<FlatList
 				data={newPosts}
 				keyExtractor={(item) => `${item.userId}${item.id}`}
 				renderItem={({ item }) => (
-					<View style={styles.blockItem}>
-						<Text style={styles.title}>{strFirstCapital(item.title)}</Text>
-						<Text style={styles.post}>{item.body}</Text>
+					<View style={styles.postItemWrapper}>
+						<View style={styles.postItem}>
+							<Text style={styles.postTitle}>{strFirstCapital(item.title)}</Text>
+							<Text style={styles.postText}>{item.body}</Text>
+						</View>
 					</View>
 				)}
 			/>
@@ -21,40 +23,37 @@ export default function PostsScreen({ posts, authorId }) {
 }
 
 const styles = StyleSheet.create({
-	block: {
+	postBlock: {
 		flex: 5,
-		width: '100%',
-		// borderStyle: 'solid',
-		// borderWidth: 2,
-		// borderColor: '#ff00ff',
 	},
-	blockItem: {
+	postItemWrapper: {
+		overflow: 'hidden',
+		paddingBottom: 5,
+	},
+	postItem: {
 		flex: 1,
 		borderStyle: 'solid',
 		borderColor: '#eeeeee',
-		borderWidth: 2,
-		marginBottom: 10,
+		borderWidth: 1,
 		paddingLeft: 18,
 		paddingRight: 17,
 		paddingBottom: 12,
+		marginBottom: 24,
 
 		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 3,
-		},
-		shadowOpacity: 0.29,
-		shadowRadius: 4.65,
-		elevation: 7,
+		shadowOffset: { width: 0, height: 1 },
+		shadowOpacity: 0.22,
+		shadowRadius: 2.22,
+		elevation: 3,
 	},
-	title: {
+	postTitle: {
 		marginTop: 12,
 		marginBottom: 12,
 		fontSize: 16,
-		fontWeight: '800',
-	},
-	post: {
-		fontSize: 12,
 		color: '#382A2C',
+	},
+	postText: {
+		fontSize: 12,
+		color: '#948C8D',
 	},
 });
