@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 // import Icon from 'react-native-vector-icons/FontAwesome';
+import { Avatar } from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
 
 export default function UserItems({ users, posts, onOpenPosts }) {
@@ -18,78 +19,64 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 	};
 
 	return (
-		<View style={styles.blockMain}>
+		<View style={styles.block}>
 			<FlatList
 				data={users}
+				keyExtractor={(item) => `${item.id}${item.name}`}
 				renderItem={({ item }) => (
 					<TouchableOpacity
-						style={styles.blockItem}
+						style={styles.listItem}
 						onPress={() => onOpenPosts(item.id, item.name)}
 						key={`${item.id}${item.username}`}>
-						<View style={styles.initials}>{initialsOfName(item.name)}</View>
-						<View style={styles.blockNameEmail}>
-							<View>{item.name}</View>
-							<View style={styles.email}>{item.email}</View>
+						<Avatar.Text
+							style={styles.listItemInitials}
+							size={40}
+							label={initialsOfName(item.name)}
+						/>
+						<View style={styles.listItemNameEmail}>
+							<Text>{item.name}</Text>
+							<Text style={styles.email}>{item.email}</Text>
 						</View>
 						<View style={styles.posts}>
-							{`${countPostsOfUser(item.id)} posts`}
-							{/* <Icon style={styles.icon} name="rocket" size={30} color="#900" /> */}
+							<Text>{`${countPostsOfUser(item.id)} posts`}</Text>
 							<AntDesign style={styles.icon} name="right" size={12} color="black" />
 						</View>
 					</TouchableOpacity>
 				)}
 			/>
-
-			{/* {users.map((item) => (
-				<TouchableOpacity
-					style={styles.blockItem}
-					onPress={() => onOpenPosts(item.id, item.name)}
-					key={`${item.id}${item.username}`}>
-					<View style={styles.initials}>{initialsOfName(item.name)}</View>
-					<View style={styles.blockNameEmail}>
-						<View>{item.name}</View>
-						<View style={styles.email}>{item.email}</View>
-					</View>
-					<View style={styles.posts}>
-						{`${countPostsOfUser(item.id)} posts`}
-						<Icon name="rocket" size={30} color="#900" />
-					</View>
-				</TouchableOpacity>
-			))} */}
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	blockMain: {
+	block: {
+		flex: 5,
 		width: '100%',
-		// flex: 1,
 		// flexDirection: 'column',
-		// justifyContent: 'space-between',
+		// justifyContent: 'center',
+		// alignItems: 'stretch',
+	},
+	listItem: {
+		flex: 1,
+		// width: '100%',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 		// alignItems: 'center',
 	},
-	blockItem: {
-		flex: 1,
-		width: '100%',
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	initials: {
-		width: '10%',
+	listItemInitials: {
+		// flex: 1,
 		backgroundColor: '#6FCF97',
-		borderRadius: '50%',
-		borderColor: 'green',
-		color: '#00000',
-		padding: 8,
-		fontWeight: 500,
-		fontSize: 14,
+		color: '#000',
+		// borderRadius: '50%',
+		// padding: 8,
+		// fontWeight: 500,
+		// fontSize: 14,
 	},
-	blockNameEmail: {
+	listItemNameEmail: {
 		// width: '60%',
-		flex: 1,
-		flexDirection: 'column',
-		marginLeft: 10,
+		flex: 4,
+		alignItems: 'flex-start',
+		marginLeft: 15,
 	},
 	name: {
 		fontSize: 16,
@@ -99,8 +86,7 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
 	posts: {
-		width: '30%',
-		flex: 1,
+		flex: 2,
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignItems: 'center',

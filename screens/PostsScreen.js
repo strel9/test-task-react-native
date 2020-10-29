@@ -1,43 +1,38 @@
 import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 
 export default function PostsScreen({ posts, authorId }) {
 	const newPosts = posts.filter((item) => item.userId === authorId);
 	const strFirstCapital = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-
 	return (
 		<View style={styles.block}>
 			<FlatList
 				data={newPosts}
+				keyExtractor={(item) => `${item.userId}${item.id}`}
 				renderItem={({ item }) => (
-					<View style={styles.item}>
-						<View style={styles.title}>{strFirstCapital(item.title)}</View>
-						<View style={styles.post}>{item.body}</View>
+					<View style={styles.blockItem}>
+						<Text style={styles.title}>{strFirstCapital(item.title)}</Text>
+						<Text style={styles.post}>{item.body}</Text>
 					</View>
 				)}
 			/>
-			{/* {newPosts.map((item) => (
-				<View style={styles.item}>
-					<View style={styles.title}>{item.title}</View>
-					<View style={styles.post}>{item.body}</View>
-				</View>
-			))} */}
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	block: {
-		flex: 1,
+		flex: 5,
+		width: '100%',
 		// borderStyle: 'solid',
 		// borderWidth: 2,
 		// borderColor: '#ff00ff',
 	},
-	item: {
+	blockItem: {
 		flex: 1,
 		borderStyle: 'solid',
-		borderWidth: 2,
 		borderColor: '#eeeeee',
+		borderWidth: 2,
 		marginBottom: 10,
 		paddingLeft: 18,
 		paddingRight: 17,
@@ -56,7 +51,7 @@ const styles = StyleSheet.create({
 		marginTop: 12,
 		marginBottom: 12,
 		fontSize: 16,
-		fontWeight: 800,
+		fontWeight: '800',
 	},
 	post: {
 		fontSize: 12,
