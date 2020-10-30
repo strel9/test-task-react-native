@@ -1,22 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 export default function Navbar({
 	activeUser,
-	authorId,
+	// authorId,
 	searchQuery,
 	onChangeSearch,
-	setAuthorId,
-	setActiveUser,
+	// setAuthorId,
+	// setActiveUser,
 }) {
 	const handleChangeSearch = (value) => {
 		onChangeSearch(value);
 	};
-	const handlePressButton = () => {
-		setAuthorId(null);
-		setActiveUser(null);
-	};
+	// const handlePressButton = () => {
+	// 	setAuthorId(null);
+	// 	setActiveUser(null);
+	// };
 
 	return (
 		<View style={styles.block}>

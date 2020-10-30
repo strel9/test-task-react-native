@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
+// import * as Font from 'expo-font';
+// import { AppLoading } from 'expo';
 
 import Navbar from './components/Navbar';
 import AuthorsScreen from './screens/AuthorsScreen';
@@ -10,6 +12,13 @@ import PostsScreen from './screens/PostsScreen';
 const API_URL = 'https://jsonplaceholder.typicode.com/';
 const API_USERS = 'users';
 const API_POSTS = 'posts';
+
+// async function loadApplication() {
+// 	await Font.loadAsync({
+// 		'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+// 		'roboto-medium': require('./assets/fonts/Roboto-Medium.ttf'),
+// 	});
+// }
 
 export default function App() {
 	useEffect(() => {
@@ -31,15 +40,15 @@ export default function App() {
 
 	const [authorId, setAuthorId] = React.useState(null);
 	const [activeUser, setActiveUser] = React.useState(null);
-
 	const [searchQuery, setSearchQuery] = React.useState('');
 
 	const onChangeSearch = (query) => setSearchQuery(query);
-	const search = (searchArr, KEY1, KEY2) => {
-		return searchArr.filter(
+
+	const search = (arr, key1, key2) => {
+		return arr.filter(
 			(item) =>
-				item[KEY1].toLowerCase().includes(searchQuery.toLowerCase()) ||
-				item[KEY2].toLowerCase().includes(searchQuery.toLowerCase()),
+				item[key1].toLowerCase().includes(searchQuery.toLowerCase()) ||
+				item[key2].toLowerCase().includes(searchQuery.toLowerCase()),
 		);
 	};
 

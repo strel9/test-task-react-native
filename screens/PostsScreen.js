@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 
 export default function PostsScreen({ posts, authorId }) {
 	const newPosts = posts.filter((item) => item.userId === authorId);
-	const strFirstCapital = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+	const getStringFirstCapital = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
 	return (
 		<View style={styles.postBlock}>
 			<FlatList
@@ -12,7 +13,7 @@ export default function PostsScreen({ posts, authorId }) {
 				renderItem={({ item }) => (
 					<View style={styles.postItemWrapper}>
 						<View style={styles.postItem}>
-							<Text style={styles.postTitle}>{strFirstCapital(item.title)}</Text>
+							<Text style={styles.postTitle}>{getStringFirstCapital(item.title)}</Text>
 							<Text style={styles.postText}>{item.body}</Text>
 						</View>
 					</View>

@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
+// import AppText from '../components/AppText';
 
 export default function UserItems({ users, posts, onOpenPosts }) {
-	const initialsOfName = (name) =>
+	const getInitialsOfName = (name) =>
 		((name.match(/\b\w/g) || []).shift() || '') + ((name.match(/\b\w/g) || []).pop() || '');
 
 	const countPostsOfUser = (idFromUsers) => {
@@ -30,7 +31,7 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 						<Avatar.Text
 							style={styles.userItemInitials}
 							size={40}
-							label={initialsOfName(item.name)}
+							label={getInitialsOfName(item.name)}
 						/>
 						<View style={styles.userItemNameEmail}>
 							<Text>{item.name}</Text>
