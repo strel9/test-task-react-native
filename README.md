@@ -1,8 +1,13 @@
 # test-task-react-native
 
+IOS
 ![alt text](screenshots/IMG_2139.JPG "первый экран")​
 ![alt text](screenshots/IMG_2140.JPG "поиск")​
 ![alt text](screenshots/IMG_2141.JPG "второй экран")​
+
+Android
+![alt text](screenshots/Screenshot_1.jpg "первый экран")​
+![alt text](screenshots/Screenshot_3.jpg "второй экран")​
 
 Task:
 Please create a mobile app using React Native, publish your code in your GitHub account, add screenshots of your app to the readme file. 
