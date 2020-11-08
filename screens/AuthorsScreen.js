@@ -9,13 +9,7 @@ export default function UserItems({ users, posts, onOpenPosts }) {
 		((name.match(/\b\w/g) || []).shift() || '') + ((name.match(/\b\w/g) || []).pop() || '');
 
 	const countPostsOfUser = (idFromUsers) => {
-		let counter = 0;
-		posts.forEach((item) => {
-			if (item.userId === idFromUsers) {
-				counter++;
-			}
-		});
-		return counter;
+		return posts.filter((item) => item.userId === idFromUsers).length;
 	};
 
 	return (
